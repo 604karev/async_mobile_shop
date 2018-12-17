@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
 import './App.css';
 import {createStore, applyMiddleware} from 'redux';
-import reducers from './reducers';
+import reducers from 'reducers';
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {BrowserRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom'
+import Layout from "containers/layout";
+import Phones from "containers/phones";
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+
+
 
 class App extends Component {
     render() {
         return (
             <BrowserRouter>
                 <Provider store={store}>
-                    <div className="App">
-                    </div>
+                    <Layout className="App">
+                        <Route path="/" component={Phones} />
+                    </Layout>
                 </Provider>
             </BrowserRouter>
         );
