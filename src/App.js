@@ -6,22 +6,32 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {BrowserRouter} from 'react-router-dom';
-import {Route} from 'react-router-dom'
-import Layout from "containers/layout";
-import Phones from "containers/phones";
+import {Route, Switch} from 'react-router-dom'
+import Layout from "containers/Layout";
+import Phone from "./containers/Phone";
+import NotFound from "./containers/NotFound";
+import Phones from "./containers/Phones";
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 
-
 class App extends Component {
+
     render() {
+        const withLayout = Component => {
+            return props => {
+                return <Layout><Component {...props} /></Layout>
+            }
+        };
+
         return (
             <BrowserRouter>
                 <Provider store={store}>
-                    <Layout className="App">
-                        <Route path="/" component={Phones} />
-                    </Layout>
+                    <Switch>
+                        <Route path="/" component={withLayout(Phones)} exact/>
+                        <Route path="/phones/:id" component={Phone}/>
+                        <Route component={NotFound}/>
+                    </Switch>
                 </Provider>
             </BrowserRouter>
         );
