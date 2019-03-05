@@ -12,6 +12,7 @@ import Phone from "./containers/Phone";
 import NotFound from "./containers/NotFound";
 import Phones from "./containers/Phones";
 
+
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
 
@@ -29,7 +30,7 @@ class App extends Component {
                 <Provider store={store}>
                     <Switch>
                         <Route path="/" component={withLayout(Phones)} exact/>
-                        <Route path="/phones/:id" component={Phone}/>
+                        <Route path="/phones/:id" component={Phone}  exact/>
                         <Route component={NotFound}/>
                     </Switch>
                 </Provider>

@@ -7,12 +7,14 @@ import * as R from 'ramda'
 
 
 class Phones extends Component {
+
     componentDidMount = () => {
         this.props.fetchPhones();
     };
 
     renderPhones = (phone, index) => {
         const shortDescription = `${R.take(60, phone.description)}...`;
+        console.log(this.props.phones);
 
         return (
 
@@ -45,10 +47,8 @@ class Phones extends Component {
         )
     };
 
-
     render() {
         const {phones, loadMorePhones} = this.props;
-
         return (
             <div className="phone-row">
                 <div className="row">
@@ -64,7 +64,6 @@ class Phones extends Component {
                     </div>
                 </div>
             </div>
-
         )
     }
 }
