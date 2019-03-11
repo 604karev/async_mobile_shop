@@ -11,7 +11,10 @@ import Layout from "containers/Layout";
 import Phone from "./containers/Phone";
 import NotFound from "./containers/NotFound";
 import Phones from "./containers/Phones";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faCartPlus);
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 

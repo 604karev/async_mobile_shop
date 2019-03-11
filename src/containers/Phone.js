@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchPhoneById} from "actions/index"
+import {fetchPhoneById, addPhoneToCart} from "actions/index"
 import {getPhoneById} from "../selectors";
-import * as R from 'ramda'
+import * as R from 'ramda';
+import BasketCart from '../components/BasketCart'
+import {Link} from 'react-router-dom'
 
 class Phone extends Component {
 
@@ -28,8 +30,8 @@ class Phone extends Component {
 
         return columnField.map(
             ([key, value]) => (
-                <div className="column-wrapper border-bottom ">
-                    <div className="row" key={key}>
+                <div className="column-wrapper border-bottom" key={key}>
+                    <div className="row">
                         <div className="col-4">
                             <p>{key}</p>
                         </div>
@@ -71,11 +73,29 @@ class Phone extends Component {
             </div>
         )
     };
-    renderSidebar = () => (
-        <div>
-            Sidebar
-        </div>
-    );
+    renderSidebar = () => {
+        const {phone, addPhoneToCart} = this.props;
+
+        return (
+            <div>
+                <div className="lead mb-3">Quick shop</div>
+                <BasketCart/>
+                <div className="form-group my-3">
+                    <h4>{phone.name}</h4>
+                    <h5>${phone.price}</h5>
+                </div>
+                <Link
+                    to='/'
+                    className='btn btn-primary btn-block'>Back to store</Link>
+                <button
+                    className="btn btn-success btn-block"
+                    onClick={() => addPhoneToCart(phone.id)}>
+                    Add to cart
+                </button>
+
+            </div>
+        )
+    };
 
 
     render() {
@@ -102,7 +122,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchPhoneById
+    fetchPhoneById,
+    addPhoneToCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phone);

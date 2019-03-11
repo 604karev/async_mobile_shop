@@ -8,3 +8,16 @@ export const getPhones = (state) => {
 };
 
 export const getRenderedPhonesLeight = state => R.length(state.phonesPage.ids);
+
+export const getTotalCartCount = state => R.length(state.cart);
+
+export const getTotalPrice = state => {
+    const totalPrice = R.compose(
+        R.sum,
+        R.pluck('price'),
+        R.map(id => getPhoneById(state, id))
+    )(state.cart);
+
+    return totalPrice
+
+};

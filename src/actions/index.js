@@ -7,7 +7,8 @@ import {
     LOAD_MORE_PHONES_FAILURE,
     FETCH_PHONE_BY_ID_START,
     FETCH_PHONE_BY_ID_SUCCESS,
-    FETCH_PHONE_BY_ID_FAILTURE
+    FETCH_PHONE_BY_ID_FAILTURE,
+    ADD_PHONE_TO_CART
 } from './actionsType';
 
 import {getRenderedPhonesLeight} from 'selectors';
@@ -76,6 +77,11 @@ export const fetchPhoneById = id => async (dispatch) => {
             error: true
         })
     }
+};
 
-
+export const addPhoneToCart = (id) => dispatch => {
+    dispatch({
+        type: ADD_PHONE_TO_CART,
+        payload: id
+    })
 };

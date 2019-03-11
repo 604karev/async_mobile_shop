@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchPhones, loadMorePhones} from 'actions/index'
+import {fetchPhones, loadMorePhones, addPhoneToCart} from 'actions/index'
 import {getPhones} from 'selectors'
 import {Link} from 'react-router-dom'
 import * as R from 'ramda'
@@ -12,14 +12,12 @@ class Phones extends Component {
         this.props.fetchPhones();
     };
 
-    renderPhones = (phone, index) => {
+
+    renderPhones = (phone) => {
         const shortDescription = `${R.take(60, phone.description)}...`;
-        console.log(this.props.phones);
-
+        const {addPhoneToCart} = this.props;
         return (
-
-            <div className="col-md-4" key={index}>
-
+            <div className="col-md-4" key={phone.id}>
                 <div className="thumbnail">
                     <img
                         className="img-thumbnail d-block m-auto"
@@ -36,7 +34,11 @@ class Phones extends Component {
                             {shortDescription}
                         </p>
                         <div className="itemButton text-center">
-                            <button className="btn btn-primary">Buy now</button>
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => addPhoneToCart(phone.id)}
+                            >Buy now
+                            </button>
                             <Link to={`/phones/${phone.id}`} className="btn btn-link">
                                 More info
                             </Link>
@@ -46,13 +48,12 @@ class Phones extends Component {
             </div>
         )
     };
-
     render() {
         const {phones, loadMorePhones} = this.props;
         return (
             <div className="phone-row">
                 <div className="row">
-                    {phones.map((phone, index) => (this.renderPhones(phone, index)))}
+                    {phones.map((phone) => (this.renderPhones(phone)))}
                 </div>
                 <div className="row">
                     <div className="col-md-12">
@@ -74,7 +75,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     fetchPhones,
-    loadMorePhones
+    loadMorePhones,
+    addPhoneToCart
 };
 
 
