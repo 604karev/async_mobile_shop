@@ -9,7 +9,7 @@ export const loadMorePhonesAPI = async ({offset}) => {
     return await response.json();
 };
 export const fetchPhoneByIdAPI = async id => {
-    const response = await fetch("../mockPhones.json");
-    const phone = await response.json();
+    const phones = await fetch("../mockPhones.json");
+    const phone = await phones.json();
     return await R.find(R.propEq('id', id), phone)
 };
