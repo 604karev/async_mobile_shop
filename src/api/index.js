@@ -11,5 +11,5 @@ export const loadMorePhonesAPI = async ({offset}) => {
 export const fetchPhoneByIdAPI = async id => {
     const phones = await fetch("../mockPhones.json");
     const phone = await phones.json();
-    return await R.find(R.propEq('id', id), phone)
+    return R.find(R.propEq('id', id), phone)
 };

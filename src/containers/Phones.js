@@ -10,14 +10,14 @@ class Phones extends Component {
 
     componentDidMount = () => {
         this.props.fetchPhones();
+
     };
 
-
-    renderPhones = (phone) => {
+    renderPhones = (phone, index) => {
         const shortDescription = `${R.take(60, phone.description)}...`;
         const {addPhoneToCart} = this.props;
         return (
-            <div className="col-md-4" key={phone.id}>
+            <div className="col-md-4" key={index}>
                 <div className="thumbnail">
                     <img
                         className="img-thumbnail d-block m-auto"
@@ -48,12 +48,15 @@ class Phones extends Component {
             </div>
         )
     };
+
     render() {
         const {phones, loadMorePhones} = this.props;
+        console.log(phones);
+
         return (
             <div className="phone-row">
                 <div className="row">
-                    {phones.map((phone) => (this.renderPhones(phone)))}
+                    {phones.map((phone, index) => (this.renderPhones(phone, index)))}
                 </div>
                 <div className="row">
                     <div className="col-md-12">
@@ -70,13 +73,14 @@ class Phones extends Component {
 }
 
 const mapStateToProps = state => ({
-    phones: getPhones(state)
+    phones: getPhones(state),
 });
 
 const mapDispatchToProps = {
     fetchPhones,
     loadMorePhones,
-    addPhoneToCart
+    addPhoneToCart,
+
 };
 
 

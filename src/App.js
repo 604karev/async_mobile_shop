@@ -13,11 +13,16 @@ import NotFound from "./containers/NotFound";
 import Phones from "./containers/Phones";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+import rootSaga from './sagas';
+import createSagaMiddleware from 'redux-saga';
 
 library.add(faCartPlus, faSearch);
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+const sagaMiddleware = createSagaMiddleware();
 
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)));
+
+sagaMiddleware.run(rootSaga);
 
 class App extends Component {
 

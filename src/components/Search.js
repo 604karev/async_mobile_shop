@@ -14,7 +14,7 @@ class Search extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchPhone(this.state.value.toUpperCase());
+        this.props.searchPhone(this.state.value);
         console.log(this.state.value)
     };
 

@@ -13,3 +13,6 @@ export const FETCH_PHONE_BY_ID_FAILURE = 'FETCH_PHONE_BY_ID_FAILURE';
 export const ADD_PHONE_TO_CART = 'ADD_PHONE_TO_CART';
 
 export const SEARCH_PHONE = 'SEARCH_PHONE';
+
+export const GET_NEWS = 'GET_NEWS';
+export const NEWS_RECEIVED = 'NEWS_RECEIVED';
