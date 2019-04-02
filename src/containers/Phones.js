@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchPhones, loadMorePhones, addPhoneToCart} from 'actions/index'
+import {
+    fetchPhones,
+    loadMorePhones,
+    addPhoneToCart,
+    fetchCategories
+} from 'actions/index'
 import {getPhones} from 'selectors'
 import {Link} from 'react-router-dom'
 import * as R from 'ramda'
@@ -10,6 +15,7 @@ class Phones extends Component {
 
     componentDidMount = () => {
         this.props.fetchPhones();
+        this.props.fetchCategories();
 
     };
 
@@ -80,7 +86,7 @@ const mapDispatchToProps = {
     fetchPhones,
     loadMorePhones,
     addPhoneToCart,
-
+    fetchCategories
 };
 
 

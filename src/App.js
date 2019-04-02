@@ -38,6 +38,7 @@ class App extends Component {
                 <Provider store={store}>
                     <Switch>
                         <Route path="/" component={withLayout(Phones)} exact/>
+                        <Route path="/categories/:id" component={withLayout(Phones)} exact/>
                         <Route path="/phones/:id" component={Phone}  exact/>
                         <Route component={NotFound}/>
                     </Switch>

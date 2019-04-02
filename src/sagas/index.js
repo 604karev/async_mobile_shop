@@ -1,23 +1,15 @@
-import {put, takeLatest, all} from 'redux-saga/effects';
-import {
-    FETCH_PHONES_FAILURE,
-    FETCH_PHONES_START,
-    FETCH_PHONES_SUCCESS
-} from "../actions/actionsType";
+import { put, takeLatest, all } from 'redux-saga/effects';
 
-function* fetchPhones() {
-    try {
-        const json = yield fetch('./mockPhones.json');
-        const phones = yield json.json();
-        yield put({type: FETCH_PHONES_SUCCESS, payload: phones,});
-    }
-    catch (error) {
-        yield put({type: FETCH_PHONES_FAILURE, payload: error, error: true});
-    }
+function* fetchNews() {
+
+    const json = yield fetch('https://newsapi.org/v1/articles?source=cnn&apiKey=c39a26d9c12f48dba2a5c00e35684ecc')
+        .then(response => response.json(), );
+
+    yield put({ type: "NEWS_RECEIVED", payload: json.articles, });
 }
 
 function* actionWatcher() {
-    yield takeLatest(FETCH_PHONES_START, fetchPhones)
+    yield takeLatest('GET_NEWS', fetchNews)
 }
 
 

@@ -1,5 +1,7 @@
 import {
     FETCH_PHONES_START,
+    FETCH_PHONES_SUCCESS,
+    FETCH_PHONES_FAILURE,
     LOAD_MORE_PHONES_START,
     LOAD_MORE_PHONES_SUCCESS,
     LOAD_MORE_PHONES_FAILURE,
@@ -8,16 +10,37 @@ import {
     FETCH_PHONE_BY_ID_FAILURE,
     ADD_PHONE_TO_CART,
     SEARCH_PHONE,
-    GET_NEWS
+    GET_NEWS, FETCH_CATEGORIES_START, FETCH_CATEGORIES_SUCCESS, FETCH_CATEGORIES_FAILURE
 } from './actionsType';
 
 import {getRenderedPhonesLeight} from 'selectors';
-import {loadMorePhonesAPI, fetchPhoneByIdAPI} from 'api';
+import {
+    fetchPhonesAPI,
+    loadMorePhonesAPI,
+    fetchPhoneByIdAPI,
+    fetchCategoriesAPI
+} from 'api';
 
 
-export const fetchPhones = () => ({
-    type: FETCH_PHONES_START
-});
+export const fetchPhones = () => async dispatch => {
+    dispatch({type: FETCH_PHONES_START});
+    try {
+        const phones = await fetchPhonesAPI();
+        dispatch({
+            type: FETCH_PHONES_SUCCESS,
+            payload: phones,
+
+        })
+    }
+    catch (err) {
+        dispatch({
+            type: FETCH_PHONES_FAILURE,
+            payload: err,
+            error: true
+        })
+
+    }
+};
 
 export const loadMorePhones = () => async (dispatch, getState) => {
 
@@ -80,3 +103,24 @@ export const searchPhone = text => dispatch => {
 export const fetchNews = () => ({
     type: GET_NEWS,
 });
+
+export const fetchCategories = () => async dispatch => {
+    dispatch({type: FETCH_CATEGORIES_START});
+
+    try {
+        const categories = await fetchCategoriesAPI();
+        dispatch({
+            type: FETCH_CATEGORIES_SUCCESS,
+            payload: categories,
+
+        })
+    }
+    catch (err) {
+        dispatch({
+            type: FETCH_CATEGORIES_FAILURE,
+            payload: err,
+            error: true
+        })
+
+    }
+};
