@@ -8,7 +8,7 @@ import * as R from 'ramda'
 
 const initialState = {};
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, {type, payload, isFetching}) => {
     switch (type) {
         case FETCH_PHONES_SUCCESS:
             const newValue = R.indexBy(R.prop('id'), payload);

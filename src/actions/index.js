@@ -23,12 +23,16 @@ import {
 
 
 export const fetchPhones = () => async dispatch => {
-    dispatch({type: FETCH_PHONES_START});
+    dispatch({
+        type: FETCH_PHONES_START,
+        isFetching: false
+    });
     try {
-        const phones = await fetchPhonesAPI();
+        const phones =  await fetchPhonesAPI();
         dispatch({
             type: FETCH_PHONES_SUCCESS,
             payload: phones,
+            isFetching: true
 
         })
     }
@@ -36,7 +40,8 @@ export const fetchPhones = () => async dispatch => {
         dispatch({
             type: FETCH_PHONES_FAILURE,
             payload: err,
-            error: true
+            error: true,
+            isFetching: true,
         })
 
     }

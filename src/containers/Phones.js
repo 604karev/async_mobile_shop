@@ -56,30 +56,35 @@ class Phones extends Component {
     };
 
     render() {
-        const {phones, loadMorePhones} = this.props;
-        console.log(phones);
+        const {phones, loadMorePhones, isFetching} = this.props;
+        console.log(isFetching.isFetching);
 
         return (
-            <div className="phone-row">
-                <div className="row">
-                    {phones.map((phone, index) => (this.renderPhones(phone, index)))}
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <button
-                            onClick={loadMorePhones}
-                            className="btn btn-info float-right mt-5">
-                            Load More
-                        </button>
+            isFetching.isFetching?
+                <div className="phone-row">
+                    <div className="row">
+                        {phones.map((phone, index) => (this.renderPhones(phone, index)))}
                     </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <button
+                                onClick={loadMorePhones}
+                                className="btn btn-info float-right mt-5">
+                                Load More
+                            </button>
+                        </div>
+                    </div>
+                </div> :
+                <div className="fixed-top fixed-bottom d-flex justify-content-center align-items-center bg-white">
+                    <img src={process.env.PUBLIC_URL + '/images/preloader.gif'} alt="preloader"/>
                 </div>
-            </div>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => ({
     phones: getPhones(state, ownProps),
+    isFetching: state.fetching
 });
 
 const mapDispatchToProps = {

@@ -2,7 +2,7 @@ import * as R from 'ramda'
 
 
 export const fetchPhonesAPI = async () => {
-    const response = await fetch("./mockPhones.json");
+    const response = await  fetch("./mockPhones.json");
     return await response.json();
 };
 export const loadMorePhonesAPI = async ({offset}) => {

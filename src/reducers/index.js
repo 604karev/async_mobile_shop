@@ -3,7 +3,8 @@ import phones from './phones';
 import phonesPage from './phonesPage';
 import phonePage from './phonePage';
 import cart from './cart';
-import categories from './categories'
+import categories from './categories';
+import fetching from './fetching';
 
 
 
@@ -12,5 +13,6 @@ export default combineReducers({
     phonesPage,
     phonePage,
     cart,
-    categories
+    categories,
+    fetching,
 })
