@@ -28,13 +28,12 @@ export const fetchPhones = () => async dispatch => {
         isFetching: false
     });
     try {
-        const phones =  await fetchPhonesAPI();
-        dispatch({
+        const phones = await fetchPhonesAPI();
+        setTimeout(() => dispatch({
             type: FETCH_PHONES_SUCCESS,
             payload: phones,
             isFetching: true
-
-        })
+        }), 2000)
     }
     catch (err) {
         dispatch({
