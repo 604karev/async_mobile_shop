@@ -15,6 +15,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
 import rootSaga from './sagas';
 import createSagaMiddleware from 'redux-saga';
+import Basket from "./containers/Basket";
 
 library.add(faCartPlus, faSearch);
 
@@ -40,6 +41,7 @@ class App extends Component {
                         <Route path="/" component={withLayout(Phones)} exact/>
                         <Route path="/categories/:id" component={withLayout(Phones)} exact/>
                         <Route path="/phones/:id" component={Phone}  exact/>
+                        <Route path="/basket" component={Basket}  exact/>
                         <Route component={NotFound}/>
                     </Switch>
                 </Provider>

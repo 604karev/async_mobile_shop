@@ -81,7 +81,7 @@ class Phone extends Component {
                 <div className="lead mb-3">Quick shop</div>
                 <BasketCart/>
                 <div className="form-group my-3">
-                    <h4>{phone.name}</h4>
+                    <h4 >{phone.name}</h4>
                     <h5>${phone.price}</h5>
                 </div>
                 <Link

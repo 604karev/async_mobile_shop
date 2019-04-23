@@ -7,7 +7,7 @@ import {getTotalCartCount, getTotalPrice} from '../selectors'
 const BasketCart = ({totalCartCount, totalPrice}) => (
     <div className="cart">
         <div className="dropdown">
-            <Link to="/cart" id="dLabel" className='btn btn-info btn-block btn-lg'>
+            <Link to="/basket" id="dLabel" className='btn btn-info btn-block btn-lg'>
                 <FontAwesomeIcon icon="cart-plus"/>
                 <span> {totalCartCount} item(s) - ${totalPrice}</span>
             </Link>

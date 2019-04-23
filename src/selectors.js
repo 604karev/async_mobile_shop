@@ -9,7 +9,7 @@ export const getPhones = (state, ownProps) => {
         state.phonesPage.search,
         R.prop('name', item)
     );
-    const applyCategory = item=>R.equals(
+    const applyCategory = item => R.equals(
         R.prop('categoryId', item),
         activeCategory
     );
@@ -39,3 +39,18 @@ export const getTotalPrice = state => {
 export const getCategories = state => R.values(state.categories);
 
 export const getActiveCategory = ownProps => R.path(['match', 'params', 'id'], ownProps);
+
+export const getBasketPhones = state => {
+    const uniqueIds = R.uniq(state.cart);
+
+    const phoneCount = id => R.compose(
+        R.length,
+        R.filter(basketId => R.equals(id, basketId))
+    )(state.cart);
+
+    const phoneWithCount = phone => R.assoc('count', phoneCount(phone.id), phone);
+    return R.compose(
+        R.map(phoneWithCount),
+        R.map((id) => getPhoneById(state, id))
+    )(uniqueIds)
+};
