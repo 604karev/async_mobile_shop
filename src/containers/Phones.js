@@ -57,10 +57,10 @@ class Phones extends Component {
 
     render() {
         const {phones, loadMorePhones, isFetching} = this.props;
-        console.log(isFetching.isFetching);
+        console.log(isFetching);
 
         return (
-            isFetching.isFetching?
+            isFetching?
                 <div className="phone-row">
                     <div className="row">
                         {phones.map((phone, index) => (this.renderPhones(phone, index)))}
