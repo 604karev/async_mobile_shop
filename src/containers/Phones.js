@@ -11,7 +11,9 @@ import {Link} from 'react-router-dom'
 import * as R from 'ramda'
 
 
+
 class Phones extends Component {
+
 
     componentDidMount = () => {
         this.props.fetchPhones();
@@ -56,9 +58,8 @@ class Phones extends Component {
     };
 
     render() {
+        const loader = process.env.PUBLIC_URL + '/images/preloader.gif';
         const {phones, loadMorePhones, isFetching} = this.props;
-        console.log(isFetching);
-
         return (
             isFetching?
                 <div className="phone-row">
@@ -76,7 +77,7 @@ class Phones extends Component {
                     </div>
                 </div> :
                 <div className="fixed-top fixed-bottom d-flex justify-content-center align-items-center bg-white">
-                    <img src={process.env.PUBLIC_URL + '/images/preloader.gif'} alt="preloader"/>
+                    <img src={loader} alt="preloader"/>
                 </div>
         )
     }

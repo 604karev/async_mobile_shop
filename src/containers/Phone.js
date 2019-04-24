@@ -81,7 +81,7 @@ class Phone extends Component {
                 <div className="lead mb-3">Quick shop</div>
                 <BasketCart/>
                 <div className="form-group my-3">
-                    <h4 >{phone.name}</h4>
+                    <h4>{phone.name}</h4>
                     <h5>${phone.price}</h5>
                 </div>
                 <Link
@@ -99,26 +99,32 @@ class Phone extends Component {
 
 
     render() {
-        console.log(this.props.phone);
-        const {phone} = this.props;
+        const {phone, isFetching} = this.props;
+        const loader = process.env.PUBLIC_URL + '/images/preloader.gif';
         return (
-            <div>
-                <div className="view-container py-4">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 col-md-9">{phone && this.renderContent()}</div>
-                            <div className="col-12 col-md-3">{phone && this.renderSidebar()}</div>
+            isFetching ?
+                <div>
+                    <div className="view-container py-4">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12 col-md-9">{phone && this.renderContent()}</div>
+                                <div className="col-12 col-md-3">{phone && this.renderSidebar()}</div>
+                            </div>
                         </div>
                     </div>
+                </div> :
+                <div className="fixed-top fixed-bottom d-flex justify-content-center align-items-center bg-white">
+                    <img src={loader} alt="preloader"/>
                 </div>
-            </div>
+
         )
     }
 
 }
 
 const mapStateToProps = state => ({
-    phone: getPhoneById(state, state.phonePage.id)
+    phone: getPhoneById(state, state.phonePage.id),
+    isFetching: state.fetching
 });
 
 const mapDispatchToProps = {

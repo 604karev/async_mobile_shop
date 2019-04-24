@@ -12,12 +12,12 @@ import Phone from "./containers/Phone";
 import NotFound from "./containers/NotFound";
 import Phones from "./containers/Phones";
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCartPlus, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faCartPlus, faSearch, faTrashAlt, faInfo, faBan, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import rootSaga from './sagas';
 import createSagaMiddleware from 'redux-saga';
 import Basket from "./containers/Basket";
 
-library.add(faCartPlus, faSearch);
+library.add(faCartPlus, faSearch, faTrashAlt, faInfo, faBan, faEnvelope);
 
 const sagaMiddleware = createSagaMiddleware();
 
