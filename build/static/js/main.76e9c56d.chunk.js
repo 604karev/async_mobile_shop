@@ -1,2 +1,0 @@
-(this["webpackJsonpreact-redux-template"]=this["webpackJsonpreact-redux-template"]||[]).push([[0],{149:function(e,t,r){"use strict";r.r(t);r(2);var a=r(76),c=r.n(a),n=(r(154),r(148)),s=(r(165),r(166),r(368),r(0));c.a.render(Object(s.jsx)(n.a,{}),document.getElementById("root"))}},[[149,1,2]]]);
-//# sourceMappingURL=main.76e9c56d.chunk.js.map
